@@ -7,7 +7,7 @@
 
 ## Cíle
 >Měření hodnot a jejich zobrazování.
->Měřené veličiny:
+>>Měřené veličiny:
   - Teplota
   - Vlhkost
   - Rychlost větru ?
