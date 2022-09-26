@@ -12,21 +12,19 @@ Měřené veličiny:
   - Teplota
   - Vlhkost
   - Tlak
+  - UV
   - Rychlost větru ?
   - Směr větru ?
   
 ## Technologie
-  -
-  -
-  -
+  - ESP Easy
   
 ## Součástky
-  - WeMos D1 R2 UNO ESP8266 / IoT ESP-WROOM-32 2.4GHz Dual-Mode WiFi+Bluetooth
-  - ASAIR senzor teploty a vlhkosti vzduchu DHT11 / DHT22
-  - Senzor tlaku a teploty BMP388
+  - WeMos D1 Mini ESP8266 Wifi modul
+  - Senzor tlaku a teploty BME/P280
   - Senzor pro detekci kvality vzduchu MQ-135
-  - WH-SP-WS01 čidlo rychlosti větru - anemometr
-  - WH-SP-WD čidlo směru větru
+  - Anemometr
+  - Čidlo směru větru
 
 ## Postup
 >
