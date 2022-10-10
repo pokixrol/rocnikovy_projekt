@@ -21,7 +21,7 @@ Měřené veličiny:
   
 ## Součástky
   - WeMos D1 Mini ESP8266 Wifi modul
-  - Senzor tlaku a teploty BME/P280
+  - Senzor tlaku, teploty a vlkosti BME 280
   - Senzor pro detekci kvality vzduchu MQ-135
   - Anemometr
   - Čidlo směru větru
