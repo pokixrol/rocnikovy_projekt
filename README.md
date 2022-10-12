@@ -13,22 +13,27 @@ Měřené veličiny:
   - Vlhkost
   - Tlak
   - UV
-  - Rychlost větru ?
-  - Směr větru ?
+  - Kvalita vzduchu
+  - Rychlost větru 
   
 ## Technologie
   - ESP Easy
+  - SPIFFS
+  - MQTT
   
 ## Součástky
   - WeMos D1 Mini ESP8266 Wifi modul
   - Senzor tlaku, teploty a vlkosti BME 280
   - Senzor pro detekci kvality vzduchu MQ-135
-  - Anemometr
-  - Čidlo směru větru
+  - Anemometr realizovaný pomocí optického senzoru
 
 ## Postup
 >
 
+## Zdroje
+  - https://www.thingiverse.com/thing:3442670
+  - https://randomnerdtutorials.com/esp8266-web-server-spiffs-nodemcu/
+  
 ## To do list
 ### Září
   - Sehnat hardware 
