@@ -26,6 +26,7 @@ Měřené veličiny:
   - Senzor tlaku, teploty a vlkosti BME 280
   - Senzor pro detekci kvality vzduchu MQ-135
   - Anemometr realizovaný pomocí optického senzoru
+  - 16x2 LCD displej 1602, I2C převodník
 
 ## Postup
 >
