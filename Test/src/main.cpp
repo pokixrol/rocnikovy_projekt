@@ -54,7 +54,7 @@ void loop() {
 
 //Display
 
-#include <Wire.h> 
+/*#include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -74,6 +74,46 @@ void loop()
  lcd.setCursor (0,0);
  lcd.print("Hello World!");
 
+}*/
+
+//BME280
+
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+
+#define SEALEVELPRESSURE_HPA (1013.25)
+
+Adafruit_BME280 bme;
+
+void setup() {
+	Serial.begin(9600);
+
+	if (!bme.begin(0x76)) {
+		Serial.println("Could not find a valid BME280 sensor, check wiring!");
+		while (1);
+	}
+}
+
+void loop() {
+	Serial.print("Temperature = ");
+	Serial.print(bme.readTemperature());
+	Serial.println("*C");
+
+	Serial.print("Pressure = ");
+	Serial.print(bme.readPressure() / 100.0F);
+	Serial.println("hPa");
+
+	Serial.print("Approx. Altitude = ");
+	Serial.print(bme.readAltitude(SEALEVELPRESSURE_HPA));
+	Serial.println("m");
+
+	Serial.print("Humidity = ");
+	Serial.print(bme.readHumidity());
+	Serial.println("%");
+
+	Serial.println();
+	delay(1000);
 }
 
 //Hokus pokus s displayem
