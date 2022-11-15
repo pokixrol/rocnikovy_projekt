@@ -6,7 +6,7 @@
 #error This code is intended to run on ESP8266 platform! Please check your Tools->Board setting.
 #endif
 AsyncWebServer webServer(80);
-DNSServer dnsServer;
+AsyncDNSServer dnsServer;
  
 //Customized home page
 String myHostName = "My-ESP8266";
