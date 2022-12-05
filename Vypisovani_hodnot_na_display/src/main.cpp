@@ -28,7 +28,7 @@ void setup()
 
 void loop()
 {
-    float tmp = bme.readTemperature();
+  float tmp = bme.readTemperature();
   float pressure = bme.readPressure() / 100.0F;
   float altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);
   float hum = bme.readHumidity();
@@ -37,67 +37,49 @@ void loop()
   float resistance = mq135_sensor.getResistance();
   float ppm = mq135_sensor.getPPM();
   float correctedPPM = mq135_sensor.getCorrectedPPM(tmp, hum);
-
+  String text[9] = {"MQ135 RZero:  ", "Corrected RZero: ", "Resistance: ", "PPM: ", "Corrected PPM: "
+  , "Temperature: ", "Pressure: ", "Altitude: ", "Humidity: "};
+int i;
+for ( i = 0; i < 9; i++)
+{
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("MQ135 RZero: ");
+  lcd.print(text[i]);
   lcd.setCursor(0, 1);
-  lcd.print(rzero);
+  switch (i)
+  {
+  case 0:
+    lcd.print(rzero);
+    break;
+  case 1:
+    lcd.print(correctedRZero);
+    break;
+  case 2:
+    lcd.print(resistance);
+    break;
+  case 3:
+    lcd.print(ppm);
+    break;
+  case 4:
+    lcd.print(correctedPPM);
+    break;
+  case 5:
+    lcd.print(tmp);
+    lcd.print(" *C");
+    break;
+  case 6:
+    lcd.print(pressure);
+    lcd.print(" hPa");
+    break;
+  case 7:
+    lcd.print(altitude);
+     lcd.print(" m");
+    break;
+  case 8:
+    lcd.print(hum);
+    lcd.print(" %");
+    break;
+  }
   delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Corrected RZero: ");
-  lcd.setCursor(0, 1);
-  lcd.print(correctedRZero);
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Resistance: ");
-  lcd.setCursor(0, 1);
-  lcd.print(resistance);
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("PPM: ");
-  lcd.setCursor(0, 1);
-  lcd.print(ppm);
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Corrected PPM: ");
-  lcd.setCursor(0, 1);
-  lcd.print(correctedPPM);
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Temperature: ");
-  lcd.setCursor(0, 1);
-  lcd.print(tmp);
-  lcd.print(" *C");
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Pressure: ");
-  lcd.setCursor(0, 1);
-  lcd.print(pressure);
-  lcd.print(" hPa");
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Altitude: ");
-  lcd.setCursor(0, 1);
-  lcd.print(altitude);
-  lcd.print(" m");
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Humidity: ");
-  lcd.setCursor(0, 1);
-  lcd.print(hum);
-  lcd.print(" %");
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Konec hlaseni :)");
-  delay(3000);
+}
 }
