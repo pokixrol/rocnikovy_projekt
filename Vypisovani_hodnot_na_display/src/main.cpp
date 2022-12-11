@@ -27,49 +27,47 @@ void vypisHodnot()
   int i;
   for (i = 0; i < 9; i++)
   {
-    do
-    {
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print(text[i]);
-      lcd.setCursor(0, 1);
 
-      switch (i)
-      {
-      case 0:
-        lcd.print(rzero);
-        break;
-      case 1:
-        lcd.print(correctedRZero);
-        break;
-      case 2:
-        lcd.print(resistance);
-        break;
-      case 3:
-        lcd.print(ppm);
-        break;
-      case 4:
-        lcd.print(correctedPPM);
-        break;
-      case 5:
-        lcd.print(tmp);
-        lcd.print(" *C");
-        break;
-      case 6:
-        lcd.print(pressure);
-        lcd.print(" hPa");
-        break;
-      case 7:
-        lcd.print(altitude);
-        lcd.print(" m");
-        break;
-      case 8:
-        lcd.print(hum);
-        lcd.print(" %");
-        break;
-      }
-      delay(2000);
-    } while (millis() <= 2000);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print(text[i]);
+    lcd.setCursor(0, 1);
+
+    switch (i)
+    {
+    case 0:
+      lcd.print(rzero);
+      break;
+    case 1:
+      lcd.print(correctedRZero);
+      break;
+    case 2:
+      lcd.print(resistance);
+      break;
+    case 3:
+      lcd.print(ppm);
+      break;
+    case 4:
+      lcd.print(correctedPPM);
+      break;
+    case 5:
+      lcd.print(tmp);
+      lcd.print(" *C");
+      break;
+    case 6:
+      lcd.print(pressure);
+      lcd.print(" hPa");
+      break;
+    case 7:
+      lcd.print(altitude);
+      lcd.print(" m");
+      break;
+    case 8:
+      lcd.print(hum);
+      lcd.print(" %");
+      break;
+    }
+    delay(3000);
   }
   return;
 }
