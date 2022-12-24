@@ -74,3 +74,6 @@ Měřené veličiny:
     - Pravidelně aktualizovat
       - Přidat vhodné popisy
       - Doplnit důležité informace
+## Vylepšení do budoucna
+  - Měření rychlosi a směru větru
+  - Krabička
