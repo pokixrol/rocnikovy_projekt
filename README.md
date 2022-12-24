@@ -18,11 +18,21 @@ Měřené veličiny:
   - Home Assistant
   - ESP Home
   - Mosquitto MQTT
+  - InfluxDB
+  - Grafana
   
   Knihovny:
-    - 
-    -
-    -
+  - <Arduino.h>
+  - <Wire.h>
+  - <LiquidCrystal_I2C.h>
+  - <Adafruit_Sensor.h>
+  - <Adafruit_BME280.h>
+  - <MQ135.h>
+  - <PubSubClient.h>
+  - <ESP8266WiFi.h>
+  - <AsyncElegantOTA.h>
+  - <ESPAsync_WiFiManager.h>
+  - <ESPAsyncDNSServer.h>
   
 ## Součástky
   - WeMos D1 Mini ESP8266 Wifi modul
