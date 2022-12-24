@@ -6,40 +6,46 @@
 >Multifunkční meteostanice.
 
 ## Cíle
->Měření hodnot a jejich zobrazování.
+>Měření hodnot a jejich zobrazování v Home Assistantu.
 
 Měřené veličiny:
-  - Teplota
+  - Teplotaa
   - Vlhkost
   - Tlak
-  - UV
   - Kvalita vzduchu
-  - Rychlost větru 
   
 ## Technologie
-  - ESP Easy
-  - SPIFFS
-  - MQTT
+  - Home Assistant
+  - ESP Home
+  - Mosquitto MQTT
+  
+  Knihovny:
+    - 
+    -
+    -
   
 ## Součástky
   - WeMos D1 Mini ESP8266 Wifi modul
   - Senzor tlaku, teploty a vlkosti BME 280
   - Senzor pro detekci kvality vzduchu MQ-135
-  - Anemometr realizovaný pomocí optického senzoru
   - 16x2 LCD displej 1602, I2C převodník
 
 ## Postup
 >
 
 ## Zdroje
-  - https://www.thingiverse.com/thing:3442670
-  - https://randomnerdtutorials.com/esp8266-web-server-spiffs-nodemcu/
+  - https://www.home-assistant.io/
+    - https://www.home-assistant.io/installation/windows
+    - https://www.home-assistant.io/integrations/mqtt/
+    - https://www.home-assistant.io/blog/2015/10/11/measure-temperature-with-esp8266-and-report-to-mqtt/
+  - https://randomnerdtutorials.com/
+    - https://randomnerdtutorials.com/esp8266-nodemcu-mqtt-publish-bme280-arduino/
   
 ## To do list
-### Září
   - Sehnat hardware 
     - Složit model
      - Otestovat
   - Vhodně upravit readme.md
-    - Přidat vhodné popisy
-    - Doplnit důležité informace
+    - Pravidelně aktualizovat
+      - Přidat vhodné popisy
+      - Doplnit důležité informace
