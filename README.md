@@ -9,7 +9,7 @@
 >Měření hodnot a jejich zobrazování v Home Assistantu.
 
 Měřené veličiny:
-  - Teplotaa
+  - Teplota
   - Vlhkost
   - Tlak
   - Kvalita vzduchu
@@ -17,7 +17,7 @@ Měřené veličiny:
 ## Technologie
   - Home Assistant
   - ESP Home
-  - Mosquitto MQTT
+  - Mosquitto MQTT Broker
   - InfluxDB
   - Grafana
   
@@ -38,7 +38,7 @@ Měřené veličiny:
   - WeMos D1 Mini ESP8266 Wifi modul
   - Senzor tlaku, teploty a vlkosti BME 280
   - Senzor pro detekci kvality vzduchu MQ-135
-  - 16x2 LCD displej 1602, I2C převodník
+  - LCD displej 1602, I2C převodník
 
 ## Postup
 >
