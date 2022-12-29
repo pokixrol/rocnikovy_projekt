@@ -74,10 +74,20 @@ Měřené veličiny:
   - Sehnat hardware 
     - Složit model
      - Otestovat
+  - Naprogramovat vypisování na LCD displej
+  - Vyzkoušet práci s WiFI Managerem
+  - Rozjet Home Assistant
+    - Nainstalovat add-ony ESP Home, MQTT Broker, InfluxDB, Grafana
+    - Vyzkoušet add-ony
+    - Naprogramovat komunikaci mezi ESP, MQTT Brokerem a Home Assistantem
+    - Zařídít vykreslování komplexnějších grafů pomocí InfluxDB a Grafany
   - Vhodně upravit readme.md
     - Pravidelně aktualizovat
       - Přidat vhodné popisy
       - Doplnit důležité informace
+  - Dokumentace
+  - Prezentace
+  - Video 
 ## Vylepšení do budoucna
   - Měření rychlosi a směru větru
   - Dodělat/vylepšit měření kvality ovzduší
