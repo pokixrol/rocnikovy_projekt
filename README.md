@@ -52,7 +52,7 @@ Měřené veličiny:
     - https://www.home-assistant.io/integrations/mqtt/
     - https://www.home-assistant.io/blog/2015/10/11/measure-temperature-with-esp8266-and-report-to-mqtt/
 
-##### YouTube kanál Hello-Future CZ, playlist Home assistant
+#### YouTube kanál Hello-Future CZ, playlist Home assistant
    - https://www.youtube.com/watch?v=XUv89aVMZNE&list=PLmEu9kI4avpRZ4o1WXfSlVWO4LYC2PyLs 
 
 #### Integrace InfluxDB, Grafana
@@ -61,10 +61,14 @@ Měřené veličiny:
 
 #### Wifi Manager
   - https://www.youtube.com/watch?v=UlRLTvl4DRc&list=LL&index=4
+
+#### BME280
+  - https://lastminuteengineers.com/bme280-arduino-tutorial/
+  - https://randomnerdtutorials.com/esp8266-nodemcu-mqtt-publish-bme280-arduino/
   
 #### Ostatní
   - https://randomnerdtutorials.com/
-    - https://randomnerdtutorials.com/esp8266-nodemcu-mqtt-publish-bme280-arduino/
+  - https://lastminuteengineers.com/
   
 ## To do list
   - Sehnat hardware 
