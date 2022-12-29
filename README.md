@@ -80,4 +80,8 @@ Měřené veličiny:
       - Doplnit důležité informace
 ## Vylepšení do budoucna
   - Měření rychlosi a směru větru
+  - Dodělat/vylepšit měření kvality ovzduší
+    - Identifikovat jednotlivé plyny
+    - Zobrazení v Home Assistantu
+  - Napájení z externího zdroje
   - Krabička
