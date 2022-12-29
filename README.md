@@ -89,6 +89,7 @@ Měřené veličiny:
   - Prezentace
   - Video 
 ## Vylepšení do budoucna
+  - Vyměnit spouštění Home Assistantu pomocí VirtualBoxu za Raspberry Pi
   - Měření rychlosi a směru větru
   - Dodělat/vylepšit měření kvality ovzduší
     - Identifikovat jednotlivé plyny
