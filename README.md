@@ -89,6 +89,7 @@ Měřené veličiny:
   - Prezentace
   - Video 
 ## Vylepšení do budoucna
+  - Vyměnit nepájivé pole za plošný spoj
   - Vyměnit spouštění Home Assistantu pomocí VirtualBoxu za Raspberry Pi
   - Připojování k Wifi skrze Wifimanager
   - Měření rychlosi a směru větru
