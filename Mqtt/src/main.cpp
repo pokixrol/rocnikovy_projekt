@@ -1,16 +1,20 @@
 #include <Arduino.h>
+
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 #include <MQ135.h>
+
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h>
-// #include <AsyncElegantOTA.h>
-// #include <ESPAsync_WiFiManager.h>
-// #include <ESPAsyncDNSServer.h>
+#include <AsyncElegantOTA.h>
+#include <ESPAsync_WiFiManager.h>
+#include <ESPAsyncDNSServer.h>
 
-// zdroj         https://www.home-assistant.io/blog/2015/10/11/measure-temperature-with-esp8266-and-report-to-mqtt/
+#if !(defined(ESP8266))
+#error This code is intended to run on ESP8266 platform! Please check your Tools->Board setting.
+#endif
 
 #define wifi_ssid ""
 #define wifi_password ""
@@ -119,8 +123,6 @@ void reconnect()
   while (!client.connected())
   {
     Serial.print("Attempting MQTT connection...");
-    // If you do not want to use a username and password, change next line to
-    // if (client.connect("ESP8266Client")) {
     if (client.connect("ESP8266Client", mqtt_user, mqtt_password))
     {
       Serial.println("connected");
@@ -161,6 +163,8 @@ void setup()
   lcd.backlight();
 }
 
+long lastForceMsg = 0;
+bool forceMsg = false;
 long lastMsg = 0;
 float tempr = 0.0;
 float humi = 0.0;
@@ -181,6 +185,12 @@ void loop()
   if (now - lastMsg > 1000)
   {
     lastMsg = now;
+
+if (now - lastForceMsg > 300000) {
+      lastForceMsg = now;
+      forceMsg = true;
+      Serial.println("Forcing publish every 5 minutes...");
+    }
 
     float newTemp = bme.readTemperature();
     float newHum = bme.readHumidity();
@@ -218,5 +228,6 @@ void loop()
       Serial.println(String(alt).c_str());
       client.publish(altitude_topic, String(alt).c_str(), true);
     }
+    forceMsg = false;
   }
 }
