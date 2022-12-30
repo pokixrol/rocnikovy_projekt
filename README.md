@@ -3,10 +3,10 @@
 >Maturitní práce, Karolína Říčná, IT4 2022/23, SŠPU Opava
 
 ## Popis
->Multifunkční meteostanice.
+>Projekt se zabývá tvorbou meteorologické stanice se zobrazováním hodnot měřených veličin v systému pro domácí automatizaci – Home Assistant. Projekt se skládá z hardwarové a softwarové části. Základ hardwarové části tvoří vývojová deska WeMos D1 Mini. Zařízení pomocí senzoru BME280 měří teplotu, atmosférický tlak, vlhkost vzduchu a absolutní nadmořskou výšku. Program reaguje na změnu měřených veličin, jakmile ji zaznamená změna se projeví v grafech. Programová část stanice, která obstará-vá správu měřícího senzoru a odesílání zpráv je řešena v jazyce Arduino, což je kombina-ce jazyků C a C++. Další konfigurace jsou provedeny v konfiguračním souboru Home Assistantu – configuration.yaml nebo přímo v uživatelském rozhraní Home Assistantu či jeho add-onů.
 
 ## Cíle
->Měření hodnot a jejich zobrazování v Home Assistantu.
+>Cílem projektu je vytvořit funkční sestavu, pochopit a prostudovat technologii MQTT, propojit zařízení s Home Assistantem a v grafech vykreslit hodnoty měřených veličin měnící se v čase. 
 
 Měřené veličiny:
   - Teplota
