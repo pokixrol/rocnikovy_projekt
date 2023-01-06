@@ -12,16 +12,11 @@
 #include <ESPAsync_WiFiManager.h>
 #include <ESPAsyncDNSServer.h>
 
+#include <configuration.hpp>
+
 #if !(defined(ESP8266))
 #error This code is intended to run on ESP8266 platform! Please check your Tools->Board setting.
 #endif
-
-#define wifi_ssid ""
-#define wifi_password ""
-
-#define mqtt_server "" // ip na které běží home assistant
-#define mqtt_user ""           // mqtt-user
-#define mqtt_password ""       // heslo k mqtt-user 
 
 #define humidity_topic "sensor/humidity"
 #define temperature_topic "sensor/temperature"
@@ -43,14 +38,12 @@ void vypisHodnotLCD()
   float pressure = bme.readPressure() / 100.0F;
   float altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);
   float hum = bme.readHumidity();
-  float rzero = mq135_sensor.getRZero();
   float correctedRZero = mq135_sensor.getCorrectedRZero(temp, hum);
   float resistance = mq135_sensor.getResistance();
-  float ppm = mq135_sensor.getPPM();
   float correctedPPM = mq135_sensor.getCorrectedPPM(temp, hum);
-  String text[9] = {"MQ135 RZero:  ", "Corrected RZero: ", "Resistance: ", "PPM: ", "Corrected PPM: ", "Temperature: ", "Pressure: ", "Altitude: ", "Humidity: "};
+  String text[7] = {"RZero: ", "Resistance: ", "PPM: ", "Temperature: ", "Pressure: ", "Altitude: ", "Humidity: "};
   int i;
-  for (i = 0; i < 9; i++)
+  for (i = 0; i < 7; i++)
   {
 
     lcd.clear();
@@ -61,33 +54,27 @@ void vypisHodnotLCD()
     switch (i)
     {
     case 0:
-      lcd.print(rzero);
-      break;
-    case 1:
       lcd.print(correctedRZero);
       break;
-    case 2:
+    case 1:
       lcd.print(resistance);
       break;
-    case 3:
-      lcd.print(ppm);
-      break;
-    case 4:
+    case 2:
       lcd.print(correctedPPM);
       break;
-    case 5:
+    case 3:
       lcd.print(temp);
       lcd.print(" *C");
       break;
-    case 6:
+    case 4:
       lcd.print(pressure);
       lcd.print(" hPa");
       break;
-    case 7:
+    case 5:
       lcd.print(altitude);
       lcd.print(" m");
       break;
-    case 8:
+    case 6:
       lcd.print(hum);
       lcd.print(" %");
       break;
