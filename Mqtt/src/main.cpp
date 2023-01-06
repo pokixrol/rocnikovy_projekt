@@ -13,6 +13,7 @@
 #include <ESPAsyncDNSServer.h>
 
 #include <configuration.hpp>
+#include <variables.hpp>
 
 #if !(defined(ESP8266))
 #error This code is intended to run on ESP8266 platform! Please check your Tools->Board setting.
@@ -34,14 +35,14 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void vypisHodnotLCD()
 {
-  float temp = bme.readTemperature();
-  float pressure = bme.readPressure() / 100.0F;
-  float altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);
-  float hum = bme.readHumidity();
-  float correctedRZero = mq135_sensor.getCorrectedRZero(temp, hum);
-  float resistance = mq135_sensor.getResistance();
-  float correctedPPM = mq135_sensor.getCorrectedPPM(temp, hum);
-  String text[7] = {"RZero: ", "Resistance: ", "PPM: ", "Temperature: ", "Pressure: ", "Altitude: ", "Humidity: "};
+  temp = bme.readTemperature();
+  pressure = bme.readPressure() / 100.0F;
+  altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);
+  hum = bme.readHumidity();
+  correctedRZero = mq135_sensor.getCorrectedRZero(temp, hum);
+  resistance = mq135_sensor.getResistance();
+  correctedPPM = mq135_sensor.getCorrectedPPM(temp, hum);
+  String text[7] = {"Temperature: ", "Pressure: ", "Altitude: ", "Humidity: ","RZero: ", "Resistance: ", "PPM: "};
   int i;
   for (i = 0; i < 7; i++)
   {
@@ -54,29 +55,29 @@ void vypisHodnotLCD()
     switch (i)
     {
     case 0:
-      lcd.print(correctedRZero);
-      break;
-    case 1:
-      lcd.print(resistance);
-      break;
-    case 2:
-      lcd.print(correctedPPM);
-      break;
-    case 3:
       lcd.print(temp);
       lcd.print(" *C");
       break;
-    case 4:
+    case 1:
       lcd.print(pressure);
       lcd.print(" hPa");
       break;
-    case 5:
+    case 2:
       lcd.print(altitude);
       lcd.print(" m");
       break;
-    case 6:
+    case 3:
       lcd.print(hum);
       lcd.print(" %");
+      break;
+    case 4:
+      lcd.print(correctedRZero);
+      break;
+    case 5:
+      lcd.print(resistance);
+      break;
+    case 6:
+      lcd.print(correctedPPM);
       break;
     }
     delay(3000);
