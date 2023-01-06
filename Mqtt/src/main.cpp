@@ -35,13 +35,13 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void vypisHodnotLCD()
 {
-  temp = bme.readTemperature();
+  temperature = bme.readTemperature();
   pressure = bme.readPressure() / 100.0F;
   altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);
-  hum = bme.readHumidity();
-  correctedRZero = mq135_sensor.getCorrectedRZero(temp, hum);
+  humidity = bme.readHumidity();
+  correctedRZero = mq135_sensor.getCorrectedRZero(temperature, humidity);
   resistance = mq135_sensor.getResistance();
-  correctedPPM = mq135_sensor.getCorrectedPPM(temp, hum);
+  correctedPPM = mq135_sensor.getCorrectedPPM(temperature, humidity);
   String text[7] = {"Temperature: ", "Pressure: ", "Altitude: ", "Humidity: ","RZero: ", "Resistance: ", "PPM: "};
   int i;
   for (i = 0; i < 7; i++)
@@ -55,7 +55,7 @@ void vypisHodnotLCD()
     switch (i)
     {
     case 0:
-      lcd.print(temp);
+      lcd.print(temperature);
       lcd.print(" *C");
       break;
     case 1:
@@ -67,7 +67,7 @@ void vypisHodnotLCD()
       lcd.print(" m");
       break;
     case 3:
-      lcd.print(hum);
+      lcd.print(humidity);
       lcd.print(" %");
       break;
     case 4:
@@ -125,7 +125,7 @@ void reconnect()
   }
 }
 
-bool checkBound(float newValue, float prevValue, float maxDiff)
+bool checkDiff(float newValue, float prevValue, float maxDiff)
 {
   return !isnan(newValue) &&
          (newValue < prevValue - maxDiff || newValue > prevValue + maxDiff);
@@ -151,15 +151,6 @@ void setup()
   lcd.backlight();
 }
 
-long lastForceMsg = 0;
-bool forceMsg = false;
-long lastMsg = 0;
-float tempr = 0.0;
-float humi = 0.0;
-float pres = 0.0;
-float alt = 0.0;
-float diff = 1.0;
-
 void loop()
 {
   vypisHodnotLCD();
@@ -180,28 +171,28 @@ if (now - lastForceMsg > 300000) {
       Serial.println("Forcing publish every 5 minutes...");
     }
 
-    float newTemp = bme.readTemperature();
-    float newHum = bme.readHumidity();
-    float newPres = bme.readPressure() / 100.0F;
-    float newAlt = bme.readAltitude(SEALEVELPRESSURE_HPA);
+    newTemp = bme.readTemperature();
+    newHum = bme.readHumidity();
+    newPres = bme.readPressure() / 100.0F;
+    newAlt = bme.readAltitude(SEALEVELPRESSURE_HPA);
 
-    if (checkBound(newTemp, tempr, diff))
+    if (checkDiff(newTemp, temp, diff))
     {
-      tempr = newTemp;
+      temp = newTemp;
       Serial.print("New temperature:");
-      Serial.println(String(tempr).c_str());
-      client.publish(temperature_topic, String(tempr).c_str(), true);
+      Serial.println(String(temp).c_str());
+      client.publish(temperature_topic, String(temp).c_str(), true);
     }
 
-    if (checkBound(newHum, humi, diff))
+    if (checkDiff(newHum, hum, diff))
     {
-      humi = newHum;
+      hum = newHum;
       Serial.print("New humidity:");
-      Serial.println(String(humi).c_str());
-      client.publish(humidity_topic, String(humi).c_str(), true);
+      Serial.println(String(hum).c_str());
+      client.publish(humidity_topic, String(hum).c_str(), true);
     }
 
-    if (checkBound(newPres, pres, diff))
+    if (checkDiff(newPres, pres, diff))
     {
       pres = newPres;
       Serial.print("New pressure:");
@@ -209,7 +200,7 @@ if (now - lastForceMsg > 300000) {
       client.publish(pressure_topic, String(pres).c_str(), true);
     }
 
-    if (checkBound(newAlt, alt, diff))
+    if (checkDiff(newAlt, alt, diff))
     {
       alt = newAlt;
       Serial.print("New Altitude:");
