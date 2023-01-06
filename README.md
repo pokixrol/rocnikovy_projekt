@@ -10,9 +10,9 @@
 
 Měřené veličiny:
   - Teplota
-  - Vlhkost
-  - Tlak
-  - Kvalita vzduchu
+  - Vlhkost vzduchu
+  - Atmosférický tlak
+  - Kvalita vzduchu ?
   
 ## Technologie
   - Home Assistant
