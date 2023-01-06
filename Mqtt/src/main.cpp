@@ -131,45 +131,21 @@ bool checkDiff(float newValue, float prevValue, float maxDiff)
          (newValue < prevValue - maxDiff || newValue > prevValue + maxDiff);
 }
 
-void setup()
-{
-
-  Serial.begin(9600); //musím dát jiný speed pokud chci integrovat wifimanager 115200
-
-  setup_wifi();
-  client.setServer(mqtt_server, 1883);
-
-  // Set SDA and SCL ports
-  Wire.begin(4, 5);
-  if (!bme.begin(0x76))
-  {
-    Serial.println("Could not find a valid BME280 sensor, check wiring!");
-    while (1)
-      ;
-  }
-  lcd.init();
-  lcd.backlight();
-}
-
-void loop()
-{
-  vypisHodnotLCD();
-  if (!client.connected())
-  {
-    reconnect();
-  }
-  client.loop();
-
-  long now = millis();
+void forcedPublish(int publishAfterMs){
+ long now = millis();
   if (now - lastMsg > 1000)
   {
     lastMsg = now;
-
-if (now - lastForceMsg > 300000) {
+  if (now - lastForceMsg > publishAfterMs) {
       lastForceMsg = now;
       forceMsg = true;
       Serial.println("Forcing publish every 5 minutes...");
     }
+  }
+}
+
+void publish(){
+    forcedPublish(300000);
 
     newTemp = bme.readTemperature();
     newHum = bme.readHumidity();
@@ -209,4 +185,36 @@ if (now - lastForceMsg > 300000) {
     }
     forceMsg = false;
   }
+
+
+void setup()
+{
+
+  Serial.begin(9600); //musím dát jiný speed pokud chci integrovat wifimanager 115200
+
+  setup_wifi();
+  client.setServer(mqtt_server, 1883);
+
+  // Set SDA and SCL ports
+  Wire.begin(4, 5);
+  if (!bme.begin(0x76))
+  {
+    Serial.println("Could not find a valid BME280 sensor, check wiring!");
+    while (1)
+      ;
+  }
+  lcd.init();
+  lcd.backlight();
+}
+
+void loop()
+{
+  vypisHodnotLCD();
+  if (!client.connected())
+  {
+    reconnect();
+  }
+  client.loop();
+  publish();
+ 
 }
