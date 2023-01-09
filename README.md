@@ -180,7 +180,8 @@ void loop()
 
 }
 ```
-### Instalace Ha
+### Instalace Home Assistant
+Budu popisovat postup, který jsem použila já, tedy instalace Home Assistant Operating System na Windows 10. Abychom mohli začít používat Home Assistant, nejprve je nutné stáhnout správnou [image](https://www.home-assistant.io/installation/windows) a to tu s příponou `.vdi` pro VirtualBox.  
 #### VirtualBox
 ### Home Assistant uživatelské rozhraní
 ### Instalace add-onů
