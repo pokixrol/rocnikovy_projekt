@@ -50,7 +50,15 @@ Měřené veličiny:
 
 ## Postup
 ### Hardwarový model
-schéma obrázek
+Schéma zapojení
+
+![image](https://user-images.githubusercontent.com/66769522/211378547-4e97b572-9e53-49f9-b8c7-764c39fa181b.png)
+
+Pohled shora zapojení bez senzoru MQ-135
+
+![image](https://user-images.githubusercontent.com/66769522/211378494-af1f47b9-fc82-4f1d-9f26-5a0fa08dbb74.png)
+
+Přední detail na sestavu 
 ### Testování součástek
 Testování jednotlivých součástek probíhalo po malých krocích. Zapojovala jsem jednu součástku po druhé do nepájivého pole a zkoušela jejich funkčnost pomocí jednoduchých příkladů. Celou softwarovou část týkající se hardwarového modelu řeším v IDE Visual Studio Code s rozšířením PlatformIO. Po vyzkoušení všech součástek jsem začala dávat dohromady samotnou sestavu.
 #### WeMos D1 Mini
