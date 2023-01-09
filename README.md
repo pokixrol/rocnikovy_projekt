@@ -183,6 +183,23 @@ void loop()
 ### Instalace Home Assistant
 Budu popisovat postup, který jsem použila já, tedy instalace Home Assistant Operating System na Windows 10. Abychom mohli začít používat Home Assistant, nejprve je nutné stáhnout správnou [image](https://www.home-assistant.io/installation/windows) a to tu s příponou `.vdi` pro VirtualBox.  
 #### VirtualBox
+Pro další postup je nutné mít funkční virtualizační nástroj [VirtualBox](https://www.virtualbox.org/wiki/Downloads). 
+
+Vytvoříme nový virtuální stroj s těmito parametry:
+  - Vlastní název
+  - Vlastní cesta k umístění virtuálního stroje
+  - Typ operačního systému Linux s verzí Linux 2.6 / 3.x / 4.x (64-bit) popř. 32-bit
+  - 2 GB RAM
+  - 32 GB Storage
+  - 2vCPU
+
+Dále zvolíme možnost použití existujícího virtuálního hard disku. Klikneme na přidat a zvolíme námi již předtím staženou image. Po tomto kroku by se nám měl vytvořit nový virtuální stroj.
+
+Ještě před spuštěním je potřeba provést úprava některých nastavení. Klikneme na settings -> stystem -> Motherboard a povolíme EFI. Dále klikneme na network -> adapter 1 -> bridged adapter a zvolíme naši stíťovou kartu.
+
+Po uložení nastavení můžeme spustit virtuální stroj a nechat ho naběhnout. 
+
+Po naběhnutí se nám zobrazí systémové údaje. Přejdeme do prohlížeče připojíme se ke správné IP adrese a portu např. http://192.168.0.1:8123. Po tomto kroku se dostaneme do uživatelského rozhraní Home Assistanta.
 ### Home Assistant uživatelské rozhraní
 ### Instalace add-onů
 ### Práce s add-ony
