@@ -199,7 +199,7 @@ Ještě před spuštěním je potřeba provést úprava některých nastavení. 
 
 Po uložení nastavení můžeme spustit virtuální stroj a nechat ho naběhnout. 
 
-Po naběhnutí se nám zobrazí systémové údaje. Přejdeme do prohlížeče připojíme se ke správné IP adrese a portu např. http://192.168.0.1:8123. Po tomto kroku se dostaneme do uživatelského rozhraní Home Assistanta.
+Po naběhnutí se nám zobrazí systémové údaje. Přejdeme do prohlížeče připojíme se ke správné IP adrese a portu např. `http://192.168.0.1:8123`. Po tomto kroku se dostaneme do uživatelského rozhraní Home Assistanta.
 ### Home Assistant uživatelské rozhraní
 ### Instalace add-onů
 ### Práce s add-ony
