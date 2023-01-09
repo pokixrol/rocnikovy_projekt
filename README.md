@@ -41,7 +41,22 @@ Měřené veličiny:
   - LCD displej 1602, I2C převodník
 
 ## Postup
->
+### Hardwarový model
+schéma obrázek
+### Testování součástek
+ukázky kódu
+### Instalace Ha
+#### VirtualBox
+### Home Assistant uživatelské rozhraní
+### Instalace add-onů
+### Práce s add-ony
+#### ESP Home
+#### InfluxDB
+#### Grafana
+### MQTT
+### Úpravy configuration.yaml
+...
+
 
 ## Zdroje
 #### Home Assistant
