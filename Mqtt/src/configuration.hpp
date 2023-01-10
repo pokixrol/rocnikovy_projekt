@@ -1,6 +1,6 @@
-#define wifi_ssid "Your-wifi-ssid"            // Ssid vaší Wi-Fi sítě.
-#define wifi_password "Your-wifi-password"    // Heslo k vaší Wi-Fi síti.
+#define wifi_ssid "Ricny"
+#define wifi_password "karol111"
 
-#define mqtt_server "Mqtt-ip"                 // IPv4 adresa na které běží home assistant.
-#define mqtt_user "Mqtt-user-name"            // Jméno vašeho MQTT uživatele
-#define mqtt_password "Mqtt-user-password"    // Heslo vašeho MQTT uživatele
+#define mqtt_server "192.168.0.107" // ip na které běží home assistant
+#define mqtt_user "mqtt-user"           // mqtt-user
+#define mqtt_password "P0litika"       // heslo k mqtt-user 

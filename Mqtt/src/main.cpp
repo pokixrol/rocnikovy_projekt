@@ -119,7 +119,7 @@ void setup_wifi()
     Serial.print(".");
   }
 
-  // Výpis IP adresy připojovaného zařízení.
+  // Výpis IP adresy nově připojeného zařízení.
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
@@ -187,8 +187,8 @@ void publish(){
     newPres = bme.readPressure() / 100.0F;
     newAlt = bme.readAltitude(SEALEVELPRESSURE_HPA);
 
-    // Kontrola rozdílu nové a minulé hodnoty.
-    if (checkDiff(newTemp, temp, diff))
+    // Kontrola rozdílu nové a minulé hodnoty nebo vynucené publikování.
+    if (checkDiff(newTemp, temp, diff) || forceMsg)
     {
       // Minulá hodnota = nová hodnota.
       temp = newTemp;
@@ -198,7 +198,7 @@ void publish(){
       client.publish(temperature_topic, String(temp).c_str(), true);
     }
 
-    if (checkDiff(newHum, hum, diff))
+    if (checkDiff(newHum, hum, diff) || forceMsg)
     {
       hum = newHum;
       Serial.print("New humidity:");
@@ -206,7 +206,7 @@ void publish(){
       client.publish(humidity_topic, String(hum).c_str(), true);
     }
 
-    if (checkDiff(newPres, pres, diff))
+    if (checkDiff(newPres, pres, diff) || forceMsg)
     {
       pres = newPres;
       Serial.print("New pressure:");
@@ -214,7 +214,7 @@ void publish(){
       client.publish(pressure_topic, String(pres).c_str(), true);
     }
 
-    if (checkDiff(newAlt, alt, diff))
+    if (checkDiff(newAlt, alt, diff) || forceMsg)
     {
       alt = newAlt;
       Serial.print("New Altitude:");
