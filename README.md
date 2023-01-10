@@ -28,6 +28,7 @@ Měřené veličiny:
   - Mosquitto MQTT Broker
   - InfluxDB
   - Grafana
+  - KiCad
   
   Knihovny:
   - <Arduino.h>
@@ -240,7 +241,10 @@ V obchodu si nainstalujeme následující doplňky:
 Všechny add-ony nainstalujeme pomocí jednoduchého kliknutí na tlačítko "Install". U každého add-onu je možnost povolit nebo zakázat určité akce např. autoupdate nebo watchdog. Je čistě na vašem uvážení jaká nastavení si povolíte, já doporučuji minimálně u všech kde je to možné povolit zobrazení v postranním panelu pro lepší přístup. U některých add-onů je potřeba po instalaci jestě pro jejich spuštění zmáčknout tlačítko "Start".
 
 ### Práce s add-ony
+#### Studio Code server
+Mnoho úprav lze provést přímo v uživatelském rozhraní Home Assistantu, ale ne všechny. Studio Code Server je souborový editor, který budeme používat k úpravám souboru configuration.yaml.
 #### ESP Home
+Pro jednodušší integrování vašich senzorů můžete využít add-on ESPHome. Pokud byste o to měli zájem zde je pěkný tutoriál v [češtině](https://www.youtube.com/watch?v=xwjwmeov054&t=489s) a zde v [angličtině](https://www.youtube.com/watch?v=iufph4dF3YU&t=28s). Vyskoušela jsem si práci ESPHome a následně použila pro inspiraci jak by mohl můj výsledný projekt vypadat.
 #### InfluxDB
 #### Grafana
 ### MQTT
