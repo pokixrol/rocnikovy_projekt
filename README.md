@@ -229,9 +229,15 @@ Po dokončení posledního kroku se dostaneme do přehledu Home Assistantu.
 ### Instalace add-onů
 Bez add-onů neboli doplňků se v Home Assistantu nehneme z místa, proto je pro další postup nutné hned někoik si jich nainstalovat.
 
-Klikneme na Settings (nastavení) -> Add-ons (doplňky) -> Add-on store (obchod s doplňky). V obchodu si nainstalujeme následující doplňky: - Studo Code Server
-																	  - Mosquitto Broker
+Klikneme na Settings (nastavení) -> Add-ons (doplňky) -> Add-on store (obchod s doplňky). 
+V obchodu si nainstalujeme následující doplňky: 
+  - Studo Code Server
+  - Mosquitto Broker
+  - InfluxDB
+  - Grafana
+  - ESPHome (Volitelné, k výslednému produktu není potřeba mít tento add-on. Já jej použila pro inspiraci a testování.)
 
+Všechny add-ony nainstalujeme pomocí jednoduchého kliknutí na tlačítko "Install". U každého add-onu je možnost povolit nebo zakázat určité akce např. autoupdate nebo watchdog. Je čistě na vašem uvážení jaká nastavení si povolíte, já doporučuji minimálně u všech kde je to možné povolit zobrazení v postranním panelu pro lepší přístup. U některých add-onů je potřeba po instalaci jestě pro jejich spuštění zmáčknout tlačítko "Start".
 
 ### Práce s add-ony
 #### ESP Home
