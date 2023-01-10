@@ -208,7 +208,23 @@ Ještě před spuštěním je potřeba provést úprava některých nastavení. 
 Po uložení nastavení můžeme spustit virtuální stroj a nechat ho naběhnout. 
 
 Po naběhnutí se nám zobrazí systémové údaje. Přejdeme do prohlížeče připojíme se ke správné IP adrese a portu např. `http://192.168.0.1:8123`. Po tomto kroku se dostaneme do uživatelského rozhraní Home Assistanta.
+
 ### Home Assistant uživatelské rozhraní
+Vítejte v Home Assistant!
+
+První věcí po tom co se dostaneme do uživatelského rozhraní je, že si vytvořímě uživatelský účet.
+
+![image](https://user-images.githubusercontent.com/66769522/211581740-7d51b00e-dd7d-4ddd-84e3-283222c558d5.png)
+
+Po vytvoření uživatelského účtu zadáme na další stránce základní informace jako polohu nebo jaký systém jednotek používáme.
+
+![image](https://user-images.githubusercontent.com/66769522/211585379-6f038ebc-f660-442d-a6c1-51a8ec35450e.png)
+
+Po zadání základních informací Home Assistant sám detekuje zařízení a služby, které jsou reprezentovány jako integrace. Můžeme je nastavit nyní, ale klidně i později. Já pokračuji dále bez nastavování nalezených integrací.
+
+![image](https://user-images.githubusercontent.com/66769522/211583864-0735b58f-6416-474b-aa5f-0256ea569f30.png)
+
+Po dokončení
 ### Instalace add-onů
 ### Práce s add-ony
 #### ESP Home
