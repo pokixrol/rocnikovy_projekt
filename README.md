@@ -224,8 +224,15 @@ Po zadání základních informací Home Assistant sám detekuje zařízení a s
 
 ![image](https://user-images.githubusercontent.com/66769522/211583864-0735b58f-6416-474b-aa5f-0256ea569f30.png)
 
-Po dokončení
+Po dokončení posledního kroku se dostaneme do přehledu Home Assistantu.
+
 ### Instalace add-onů
+Bez add-onů neboli doplňků se v Home Assistantu nehneme z místa, proto je pro další postup nutné hned někoik si jich nainstalovat.
+
+Klikneme na Settings (nastavení) -> Add-ons (doplňky) -> Add-on store (obchod s doplňky). V obchodu si nainstalujeme následující doplňky: - Studo Code Server
+																	  - Mosquitto Broker
+
+
 ### Práce s add-ony
 #### ESP Home
 #### InfluxDB
