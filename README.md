@@ -255,6 +255,12 @@ Pro lepší pochopení se můžete [zde](https://www.youtube.com/watch?v=NXyf7tV
 ![image](https://user-images.githubusercontent.com/66769522/211756970-5e109fcf-9614-4db5-bd43-f60425ec6616.png)
 
 ##### Praxe
+###### Vytvoření a přiřazení MQTT uživatele
+V uživatelském rozhranní Home Assistantu klikneme na nastavení -> lidé -> uživatelé -> přidat uživatele. Poté se nám objeví jednoduchý formulář kde si vytvoříme našeho mqtt uživatele. Po vytvoření našeho uživatele klikneme na nástroje pro vývojáře a dáme zkontrolovat konfiguraci. Pokud kontrola proběhla v pořádku dáme restartovat a chvíli počkáme.
+
+Po restartování přejdeme do nastavení -> zařízení a služby, zde si najdeme náš MQTT broker zmáčkneme tlačítko configure a následně submit. Poté klikneme znovu na tlačítko configure a poté na re-configure MQTT. Opět se nám objeví jednoduchý formulář kde změníme pole uživatelské jméno a heslo na údáje námi předtím vytvořeného uživatele. 
+
+Pokud vám vytvoření uživatele dělá problémy můžete postupovat s pomocí tohoto [tutoriálu](https://www.youtube.com/watch?v=dqTn-Gk4Qeo&t=477s).
 ###### Vytvoření projektu
 Vytvořila jsem v PlatformIO nový projekt s názvem `Mqtt`. Do tohoto projektu jsem zahrnula nejen kód týkající se MQTT ale i výpis na LCD displej, jedná se tak o finální projekt. 
 ###### Vytvoření hlavičkových souborů .hpp
@@ -283,7 +289,12 @@ Nesmíme zapomenout upravit i soubor platformio.ini, jinak knihovny nebudou fung
 ###### Úpravy souboru configuration.hpp
 Do souboru configuration.hpp vložíme následující kód a upravíme podle vlastních potřeb.
 ```
+#define wifi_ssid "Your-wifi-ssid"            // Ssid (název) vaší Wi-Fi sítě.
+#define wifi_password "Your-wifi-password"    // Heslo k vaší Wi-Fi síti.
 
+#define mqtt_server "Mqtt-ip"                 // IPv4 adresa na které běží home assistant.
+#define mqtt_user "Mqtt-user-name"            // Jméno vašeho MQTT uživatele
+#define mqtt_password "Mqtt-user-password"    // Heslo vašeho MQTT uživatele
 ```
 ###### Úpravy souboru variables.hpp
 V souboru variables.hpp vytvoříme většinu proměných, které budeme v souboru main.cpp používat. Já zde uvedu pouze ty, které budu potřebovat v příkladu níže. Veškeré mnou použité proměnné naleznete v repozitáři výše.
