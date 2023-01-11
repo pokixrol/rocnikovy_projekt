@@ -493,10 +493,12 @@ V kartě si můžeme nastavit spoustu věcí např. název, ikonu, jednotku, mot
 #### InfluxDB, Grafana
 Pokud se nespokojíte s "obyčejným" dashboardem v přehledu, můžeme využít dalších dvou add-onů, které jsme si na začátku nainstalovali a to InfluxDB a Grafanu. Tyto dva add-ony spolu úzce souvisí, proto je zmiňuji v jednom bloku.
 ##### InfluxDB
+Začneme s vytvořením nové databáze. Přejdeme do uživatelského rozhraní InfluxDB a klikneme na InfluxDB Admin -> Databases -> Create database. Databázi pojmenujeme a potvrdíme. Dále si vytvoříme uživatele pro tuto databázi kliknutím na tlačítko InfluxDB Admin -> Users -> Create user. Uživatele pojmenujeme, nastavíme mu heslo a potvrdíme. Následně našemu uživateli změníme práva v kolonce permissions z none na all.
 ##### Úpravy configuration.yaml
+Po vytvoření databáze a uživatele je ještě nutné pozměnit konfigurační soubor configuratin.yaml.
 ```
 influxdb:
-  host: 192.168.0.107
+  host: 192.168.0.1
   port: 8086
   database: DB_for_Grafana
   username: grafana-user
@@ -504,7 +506,11 @@ influxdb:
   max_retries: 3
   default_measurement: state
 ```
+Po úpravách konfiguračního souboru je nutné Home Assistanta restartovat. Klikneme na nástroje pro vývojáře a dáme zkontrolovat konfiguraci. Pokud kontrola proběhla v pořádku dáme restartovat a chvíli počkáme.
 ##### Grafana
+Po vytvoření databáze přejdeme do uživatelského rozhraní Grafany. Klikneme na Configuration -> Data sources -> Add data source a vybereme InfluxDB. Objemví se nám poměrně rozsáhlé nastavení my doplníme následující: do kolonky URL doplníme `http://ip_na_ktere_bezi_home_assistant:8086`, do kolonky Database doplníme název naší vytvořené databáze, do kolonky User doplníme jméno uživatele pro tuto databázi, do kolonky Password doplníme heslo tohoto uživatele, v kolonce HTTP Method zvolíme možnost GET. Klikneme na tlačítko save and test a pokud je vše v pořádku máme hotovo. Nyní velmi jednoduše můžeme tvořit komplexní grafy.
+
+[Zde](https://www.youtube.com/watch?v=KM6UC4tMVYo&list=LL&index=3&t=309s) naleznete video s tutoriálem jak na Grafanu a InfluxDB i s ukázkou tvoření grafů.
 ## Doporučení
   - Skvělé YouTube kanály o domácí automatizaci
     - https://www.youtube.com/@EverythingSmartHome/videos
