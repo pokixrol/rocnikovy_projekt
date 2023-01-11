@@ -490,10 +490,9 @@ Pokud jste došli až sem tak vám gratuluji, právě nastal čas na to sklidit 
 V uživatelském rozhranní klikneme na Overview (přehled) -> Edit (upravit ovládací panel) -> Add caard (přidat kartu). Objeví se nám list předem vytvořených karet, ze kterých si můžeme vybrat dle vlastního uvážení. Já jsem pro svůj projekt zvolila kartu "Entities", ale pokud jste postupovali podle mého vzorového příkladu měla by stačit karta "Entity".
 
 V kartě si můžeme nastavit spoustu věcí např. název, ikonu, jednotku, motiv, toto všechno je čistě na vás jak si kartu upravíte. Nejdůležitější však je výběr správné entity. Název námi požadované entity se schoduje s názvem, který jsme jí dali v konfiguračním souboru configuration.yaml, v našem případě "Temperature". Po výběru správné netity (nebo entit) kartu uložíme. Klikneme na "hotovo" a máme hotovo.
-#### InfluxDB
-
+#### InfluxDB, Grafana
+Pokud se nespokojíte s "obyčejným" dashboardem v přehledu, můžeme využít dalších dvou add-onů, které jsme si na začátku nainstalovali a to InfluxDB a Grafanu. Tyto dva add-ony spolu úzce souvisí, proto je zmiňuji v jednom bloku.
 ##### Úpravy configuration.yaml
-#### Grafana
 
 ## Doporučení
 
