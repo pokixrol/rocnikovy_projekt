@@ -492,8 +492,19 @@ V uživatelském rozhranní klikneme na Overview (přehled) -> Edit (upravit ovl
 V kartě si můžeme nastavit spoustu věcí např. název, ikonu, jednotku, motiv, toto všechno je čistě na vás jak si kartu upravíte. Nejdůležitější však je výběr správné entity. Název námi požadované entity se schoduje s názvem, který jsme jí dali v konfiguračním souboru configuration.yaml, v našem případě "Temperature". Po výběru správné netity (nebo entit) kartu uložíme. Klikneme na "hotovo" a máme hotovo.
 #### InfluxDB, Grafana
 Pokud se nespokojíte s "obyčejným" dashboardem v přehledu, můžeme využít dalších dvou add-onů, které jsme si na začátku nainstalovali a to InfluxDB a Grafanu. Tyto dva add-ony spolu úzce souvisí, proto je zmiňuji v jednom bloku.
+##### InfluxDB
 ##### Úpravy configuration.yaml
-
+```
+influxdb:
+  host: 192.168.0.107
+  port: 8086
+  database: DB_for_Grafana
+  username: grafana-user
+  password: grafana-user-password
+  max_retries: 3
+  default_measurement: state
+```
+##### Grafana
 ## Doporučení
   - Skvělé YouTube kanály o domácí automatizaci
     - https://www.youtube.com/@EverythingSmartHome/videos
