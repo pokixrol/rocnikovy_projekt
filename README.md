@@ -276,10 +276,10 @@ Nahoru do souboru main.cpp připojíme následující knihovny.
 ```
 // Khihovny pracující s hardwarem.
 #include <Wire.h>
-#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal_I2C.h>		// Tuto knihovnu není potřeba ve zjednodušeném příkladu níže použít, ve finálním projektu však ano.
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
-#include <MQ135.h>
+#include <MQ135.h>			// Tuto knihovnu není potřeba ve zjednodušeném příkladu níže použít, ve finálním projektu však ano.
 
 // Knihovny pracující připojením a mqtt.
 #include <PubSubClient.h>
@@ -299,6 +299,11 @@ Do souboru configuration.hpp vložíme následující kód a upravíme podle vla
 ###### Úpravy souboru variables.hpp
 V souboru variables.hpp vytvoříme většinu proměných, které budeme v souboru main.cpp používat. Já zde uvedu pouze ty, které budu potřebovat v příkladu níže. Veškeré mnou použité proměnné naleznete v repozitáři výše.
 ```
+long lastPubeMsg = 0;
+bool Msg = false;
+long lastMsg = 0;
+float temp = 0;
+float newTemp = 0;
 ```
 ###### Úpravy souboru main.cpp
 Po připojení knihoven a hlavičkových souborů je na řadě samotné programování. Celý okomentovaný kód naleznete výše v repozitáři. Zde uvedu pouze krátky příklad práce s MQTT, který si můžete vyzkoušet.
@@ -447,6 +452,34 @@ void loop()
 }
 ```
 ###### Úpravy configuration.yaml
+Programová část v PlatformIO ovšem není vše. Dále budeme potřebovat provést už jen jednoduché úpravy konfiguračního souboru configuration.yaml. Vrátíme se zpět do uživatelského rozhraní Home Assistantu a otevřeme si náš souborový editor Studio Code Server. V souborovém editoru zvolíme konfigurační soubor configuration.yaml a vložíme následující kód.
+
+Tento kód stačí pro náš vzorový příklad.
+```
+mqtt:
+  sensor:
+    - name: "Temperature"
+      state_topic: "sensor/temperature"
+      qos: 0
+      unit_of_measurement: "ºC"
+```
+Zde je zbytek kódu, který jsem použila ve svém projektu.
+```
+    - name: "Humidity"
+      state_topic: "sensor/humidity"
+      qos: 0
+      unit_of_measurement: "%"
+
+    - name: "Pressure"
+      state_topic: "sensor/pressure"
+      qos: 0
+      unit_of_measurement: "hPa"
+
+    - name: "Approximate altitude"
+      state_topic: "sensor/altitude"
+      qos: 0
+      unit_of_measurement: "m"
+```
 #### InfluxDB
 ##### Úpravy configuration.yaml
 #### Grafana
