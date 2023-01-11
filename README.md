@@ -495,6 +495,12 @@ Pokud se nespokojíte s "obyčejným" dashboardem v přehledu, můžeme využít
 ##### Úpravy configuration.yaml
 
 ## Doporučení
+  - Skvělé YouTube kanály o domácí automatizaci
+    - https://www.youtube.com/@EverythingSmartHome/videos
+    - https://www.youtube.com/@SmartHomeAddict/videos
+    - https://www.youtube.com/@ITandAutomationAcademy/videos
+    - https://www.youtube.com/@HelloFutureCZ/videos
+    - https://www.youtube.com/@HomeAutomationGuy/videos
 
 ## Zdroje
 #### Home Assistant
