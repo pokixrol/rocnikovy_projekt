@@ -208,7 +208,7 @@ Ještě před spuštěním je potřeba provést úprava některých nastavení. 
 
 Po uložení nastavení můžeme spustit virtuální stroj a nechat ho naběhnout. 
 
-Po naběhnutí se nám zobrazí systémové údaje. Přejdeme do prohlížeče připojíme se ke správné IP adrese a portu např. `http://192.168.0.1:8123`. Po tomto kroku se dostaneme do uživatelského rozhraní Home Assistanta.
+Po naběhnutí se nám zobrazí systémové údaje. Přejdeme do prohlížeče a připojíme se ke správné IP adrese a portu např. `http://192.168.0.1:8123`. Po tomto kroku se dostaneme do uživatelského rozhraní Home Assistanta.
 
 ### Home Assistant uživatelské rozhraní
 Vítejte v Home Assistant!
@@ -241,16 +241,147 @@ V obchodu si nainstalujeme následující doplňky:
 Všechny add-ony nainstalujeme pomocí jednoduchého kliknutí na tlačítko "Install". U každého add-onu je možnost povolit nebo zakázat určité akce např. autoupdate nebo watchdog. Je čistě na vašem uvážení jaká nastavení si povolíte, já doporučuji minimálně u všech kde je to možné povolit zobrazení v postranním panelu pro lepší přístup. U některých add-onů je potřeba po instalaci jestě pro jejich spuštění zmáčknout tlačítko "Start".
 
 ### Práce s add-ony
+S některými add-ony se pracuje lehce a jednoduše s jinými už to tak jednoduché není, proto se v této části budu věnovat každému add-onu zvášť a u těch složitějších přesně popíšu postup práce.
 #### Studio Code server
 Mnoho úprav lze provést přímo v uživatelském rozhraní Home Assistantu, ale ne všechny. Studio Code Server je souborový editor, který budeme používat k úpravám souboru configuration.yaml.
 #### ESP Home
 Pro jednodušší integrování vašich senzorů můžete využít add-on ESPHome. Pokud byste o to měli zájem zde je pěkný tutoriál v [češtině](https://www.youtube.com/watch?v=xwjwmeov054&t=489s) a zde v [angličtině](https://www.youtube.com/watch?v=iufph4dF3YU&t=28s). Vyskoušela jsem si práci ESPHome a následně použila pro inspiraci jak by mohl můj výsledný projekt vypadat.
-#### InfluxDB
-#### Grafana
-### MQTT
-### Úpravy configuration.yaml
-...
+#### Mosquitto broker
+##### Teorie
+Jedná se o Open Source MQTT broker. MQTT protokol funguje na principu publish/subscribe, kde broker funguje jako prostředník pro předávání zpráv mezi klienty. Zprávy jsou tříděny do témat (topic) a zařízení v daném tématu buď publikuje (publish) nebo odebírá (subscribe). 
 
+Pro lepší pochopení se můžete [zde](https://www.youtube.com/watch?v=NXyf7tVsi10&list=LL&index=2) podívat na video s vysvětlením nebo níže na grafické schéma.
+
+![image](https://user-images.githubusercontent.com/66769522/211756970-5e109fcf-9614-4db5-bd43-f60425ec6616.png)
+
+##### Praxe
+###### Vytvoření projektu
+Vytvořila jsem v PlatformIO nový projekt s názvem `Mqtt`. Do tohoto projektu jsem zahrnula nejen kód týkající se MQTT ale i výpis na LCD displej, jedná se tak o finální projekt. 
+###### Vytvoření hlavičkových souborů .hpp
+V projektu Mqtt v podadresáři src najdeme soubor main.cpp, což je náš hlavní soubor kde budeme tvořit náš kód. Kromě tohotou souboru vytvoříme v podadresáři src další dva soubory s příponou .hpp a to configuration.hpp a variables.hpp (pojmenovat si je samozřejmě můžete jakkoli jinak).
+###### Připojení hlavičkových souborů .hpp
+Nahoru do souboru main. cpp vložíme následující kód pro připojení hlavičkových souborů.
+```
+#include <configuration.hpp>
+#include <variables.hpp>
+```
+###### Knihovny
+Nahoru do souboru main.cpp připojíme následující knihovny.
+```
+// Khihovny pracující s hardwarem.
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+#include <MQ135.h>
+
+// Knihovny pracující připojením a mqtt.
+#include <PubSubClient.h>
+#include <ESP8266WiFi.h>
+```
+Nesmíme zapomenout upravit i soubor platformio.ini, jinak knihovny nebudou fungovat.
+###### Úpravy souboru configuration.hpp
+Do souboru configuration.hpp vložíme následující kód a upravíme podle vlastních potřeb.
+```
+
+```
+###### Úpravy souboru variables.hpp
+V souboru variables.hpp vytvoříme většinu proměných, které budeme v souboru main.cpp používat. Já zde uvedu pouze ty, které budu potřebovat v příkladu níže. Veškeré mnou použité proměnné naleznete v repozitáři výše.
+```
+```
+###### Úpravy souboru main.cpp
+Po připojení knihoven a hlavičkových souborů je na řadě samotné programování. Celý okomentovaný kód naleznete výše v repozitáři. Zde uvedu pouze krátky příklad práce s MQTT, který si můžete vyzkoušet.
+```
+// Definování tématu (topicu) pro MQTT.
+#define temperature_topic "sensor/temperature"
+
+// Vytvoření objektů na základě použitých knihoven aby jsme mohli přistupovat k jednotlivým funkcím.
+WiFiClient espClient;
+PubSubClient client(espClient);
+Adafruit_BME280 bme;
+
+// Funkce pro nastavení komunikace přes WiFi.
+void setup_wifi()
+{
+  // Výpis ssid sítě, ke které se připojujeme.
+  delay(10);
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(wifi_ssid);
+
+  // Začátek komunikace.
+  WiFi.begin(wifi_ssid, wifi_password);
+
+  // Pomyslné načítání dokud nejsme připojeni.
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    delay(500);
+    Serial.print(".");
+  }
+
+  // Výpis IP adresy nově připojeného zařízení.
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+// Funkce pro opětovné připojení.
+void reconnect()
+{
+  // Pokud klient není připojen.
+  while (!client.connected())
+  {
+    // Výpis hlášky pokoušjící se o připojení.
+    Serial.print("Attempting MQTT connection...");
+    // Znovu připojení.
+    if (client.connect("ESP8266Client", mqtt_user, mqtt_password))
+    {
+      // Výpis hlášky připojeno.
+      Serial.println("connected");
+    }
+    else
+    {
+      // Výpis statusu pokud nastane chyba.
+      Serial.print("failed, rc=");
+      Serial.print(client.state());
+      Serial.println(" try again in 5 seconds");
+      delay(5000);
+    }
+  }
+}
+
+// Funkce pro publikování zpráv k příslušným tématům.
+void publish(){
+
+    // Vyvolání funkce pro vynucené publikování.
+    forcedPublish(300000);
+
+    // Získání nových hodnot do proměnných.
+    newTemp = bme.readTemperature();
+    newHum = bme.readHumidity();
+    newPres = bme.readPressure() / 100.0F;
+    newAlt = bme.readAltitude(SEALEVELPRESSURE_HPA);
+
+    // Kontrola rozdílu nové a minulé hodnoty nebo vynucené publikování.
+    if (checkDiff(newTemp, temp, diff) || forceMsg)
+    {
+      // Minulá hodnota = nová hodnota.
+      temp = newTemp;
+      // Výpis a publikování.
+      Serial.print("New temperature:");
+      Serial.println(String(temp).c_str());
+      client.publish(temperature_topic, String(temp).c_str(), true);
+    }
+    forceMsg = false;
+  }
+
+
+```
+###### Úpravy configuration.yaml
+#### InfluxDB
+##### Úpravy configuration.yaml
+#### Grafana
 
 ## Zdroje
 #### Home Assistant
