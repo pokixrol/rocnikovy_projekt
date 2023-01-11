@@ -302,16 +302,19 @@ V souboru variables.hpp vytvoříme většinu proměných, které budeme v soubo
 ```
 ###### Úpravy souboru main.cpp
 Po připojení knihoven a hlavičkových souborů je na řadě samotné programování. Celý okomentovaný kód naleznete výše v repozitáři. Zde uvedu pouze krátky příklad práce s MQTT, který si můžete vyzkoušet.
-```
-// Definování tématu (topicu) pro MQTT.
-#define temperature_topic "sensor/temperature"
 
-// Vytvoření objektů na základě použitých knihoven aby jsme mohli přistupovat k jednotlivým funkcím.
+ Definování tématu (topicu) pro MQTT.
+```
+#define temperature_topic "sensor/temperature"
+```
+Vytvoření objektů na základě použitých knihoven aby jsme mohli přistupovat k jednotlivým funkcím.
+```
 WiFiClient espClient;
 PubSubClient client(espClient);
 Adafruit_BME280 bme;
-
-// Funkce pro nastavení komunikace přes WiFi.
+```
+Funkce pro nastavení komunikace přes WiFi.
+```
 void setup_wifi()
 {
   // Výpis ssid sítě, ke které se připojujeme.
@@ -336,8 +339,9 @@ void setup_wifi()
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 }
-
-// Funkce pro opětovné připojení.
+```
+Funkce pro opětovné připojení.
+```
 void reconnect()
 {
   // Pokud klient není připojen.
@@ -361,21 +365,37 @@ void reconnect()
     }
   }
 }
-
-// Funkce pro publikování zpráv k příslušným tématům.
+```
+Funkce pro publikování po určitém čase.
+```
+void publishAfter(int publishAfterMs){
+ long now = millis();
+ // Když je momentální čas - čas poslední zprávy větší než 1000.
+  if (now - lastMsg > 1000)
+  {
+    // Čas poslední zprávy = momentální čas.
+    lastMsg = now;
+  // Když je momentální čas - čas poslední publikované zprávy větší než námi nastavený čas pro publikování.
+  if (now - lastPubMsg > publishAfterMs) {
+      lastPubMsg = now;
+      Msg = true;
+      Serial.println("Publish ...");
+    }
+  }
+}
+```
+Funkce pro publikování zprávy k příslušnému tématu.
+```
 void publish(){
 
-    // Vyvolání funkce pro vynucené publikování.
-    forcedPublish(300000);
+    // Vyvolání funkce pro publikování s nastavením času na 1 minutu (60000 ms = 1 min).
+     publishAfter(60000);
 
-    // Získání nových hodnot do proměnných.
+    // Získání nové hodnoty do proměnné.
     newTemp = bme.readTemperature();
-    newHum = bme.readHumidity();
-    newPres = bme.readPressure() / 100.0F;
-    newAlt = bme.readAltitude(SEALEVELPRESSURE_HPA);
-
-    // Kontrola rozdílu nové a minulé hodnoty nebo vynucené publikování.
-    if (checkDiff(newTemp, temp, diff) || forceMsg)
+   
+    // Když je Msg true.
+    if (Msg)
     {
       // Minulá hodnota = nová hodnota.
       temp = newTemp;
@@ -384,15 +404,54 @@ void publish(){
       Serial.println(String(temp).c_str());
       client.publish(temperature_topic, String(temp).c_str(), true);
     }
-    forceMsg = false;
+    Msg = false;
   }
+```
+```
+void setup()
+{
 
+  // Nastavení sériové linky.
+  Serial.begin(9600);
 
+  // Vyvolání funkce pro připojení k WiFi.
+  setup_wifi();
+  // Nastavení MQTT serveru.
+  client.setServer(mqtt_server, 1883);
+
+  // Počátek I2C.
+  Wire.begin(4, 5);
+
+  // Když senzor BME280 není na správné adrese.
+  if (!bme.begin(0x76))
+  {
+    Serial.println("Could not find a valid BME280 sensor, check wiring!");
+    while (1)
+      ;
+  }
+}
+```
+```
+void loop()
+{
+ 
+  // Když není klient připojen.
+  if (!client.connected())
+  {
+    // Vyvolání funkce pro opětovné připojení.
+    reconnect();
+  }
+  client.loop();
+  publish();
+ 
+}
 ```
 ###### Úpravy configuration.yaml
 #### InfluxDB
 ##### Úpravy configuration.yaml
 #### Grafana
+
+## Doporučení
 
 ## Zdroje
 #### Home Assistant
