@@ -23,6 +23,7 @@ Měřené veličiny:
   - Kvalita vzduchu ?
   
 ## Technologie
+  - VirtualBox
   - Home Assistant
   - ESP Home
   - Mosquitto MQTT Broker
