@@ -569,6 +569,8 @@ Po vytvoření databáze přejdeme do uživatelského rozhraní Grafany. Kliknem
   - Vyměnit nepájivé pole za plošný spoj
   - Vyměnit spouštění Home Assistantu pomocí VirtualBoxu za Raspberry Pi
   - Připojování k Wifi skrze Wifimanager
+  - Uživatelsky ovládaný výpis na displeji
+    - Menu, výpis hodnot na vyžádání (ovládání tlačítky)
   - Měření rychlosi a směru větru
   - Dodělat/vylepšit měření kvality ovzduší
     - Identifikovat jednotlivé plyny
