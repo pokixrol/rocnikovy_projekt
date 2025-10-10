@@ -1,6 +1,9 @@
 # Ročníkový projekt - Meteostanice
 
 >Maturitní práce, Karolína Říčná, IT4 2022/23, SŠPU Opava
+>
+>"Bez meteostanice není internetu věcí, bez meteostanice není žádný návod kompletní a pokud jste si nepostavili meteostanici, nepostavili jste nic. Každý si postavil meteostanici, a kdo říká, že ne, staví ji dodnes."
+>- ESP32 prakticky: Od základních obvodů k pokročilým aplikacím, Malý Martin
 
 ## Popis
 Projekt se zabývá tvorbou meteorologické stanice se zobrazováním hodnot měřených veličin v systému pro domácí automatizaci – Home Assistant. 
